@@ -19,26 +19,13 @@ import org.df4j.core.impl.messagestream.PickPoint;
  * of shared places is played by {@link PickPoint}
  */
 public abstract class Actor extends AsynchronousCall {
-    private Pin controlPin = new Pin(false);
-
-    /**
-     * invoked when all transition transition are ready,
-     * and method run() is to be invoked.
-     * Safe way is to submit this instance as a Runnable to an Executor.
-     * Fast way is to invoke it directly, but make sure the chain of
-     * direct invocations is limited to avoid stack overflow.
-     */
-    protected void fire() {
-        controlPin.turnOff();
-        super.fire();
-    }
 
     @Override
     public void run() {
         try {
             act();
             consumeTokens();
-            controlPin.turnOn();
+            super.start();
         } catch (Throwable e) {
             System.err.println("Error in actor " + getClass().getName());
             e.printStackTrace();

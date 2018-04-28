@@ -23,7 +23,7 @@ class StreamSubscriber<T> extends Actor.StreamInput<T> implements Subscriber<T> 
     }
 
     @Override
-    protected synchronized void purge() {
+    public synchronized void purge() {
         super.purge();
         if (closeRequested) {
             return;

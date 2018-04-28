@@ -25,7 +25,7 @@ class OneShotPublisher<T> extends Actor.Semafor implements Publisher<T>, Subscri
      * does nothing: counter decreases when a message is posted
      */
     @Override
-    protected void purge() {
+    public void purge() {
     }
 
     @Override

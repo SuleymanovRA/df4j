@@ -15,23 +15,15 @@ public class AsynchronousCallTest {
         computeQuadratic(4.0, 2.0, 3.0);
     }
 
-    public void computeQuadratic(double a, double b, double c, double... expectedRoots) throws InterruptedException {
-        BlockingQueuePort<Double> res = new BlockingQueuePort<>();
+    public void computeQuadratic(double a, double b, double c, double... expectedRoots) throws InterruptedException, TimeoutException, ExecutionException {
+        PortFuture<double[]> res = new PortFuture<>();
         QuadraticRoots equation = new QuadraticRoots(res);
         equation.a.post(a);
         equation.b.post(b);
         equation.c.post(c);
-        double root1 = res.poll(1, TimeUnit.SECONDS);
-        if (expectedRoots.length == 0) {
-            Assert.assertTrue(Double.isNaN(root1));
-        } else {
-            double root2 = res.poll(1, TimeUnit.SECONDS);
-            if (root1>root2)             {
-                double root = root1; root1 = root2; root2 = root;
-            }
-            Assert.assertEquals(expectedRoots[0], root1, 0.001);
-            Assert.assertEquals(expectedRoots[1], root2, 0.001);
-        }
+        double[] roots = res.get(1, TimeUnit.SECONDS);
+        Assert.assertNotNull(roots);
+        Assert.assertArrayEquals(expectedRoots, roots, 0.001);
     }
 
     /**
@@ -44,7 +36,7 @@ public class AsynchronousCallTest {
         PortPromise<Double> b = new PortPromise<>();
         PortPromise<Double> c = new PortPromise<>();
 
-        public QuadraticRoots(Port<Double> roots){
+        public QuadraticRoots(Port<double[]> roots){
             PortPromise<Double> d = new PortPromise<>();
             Discr discr = new Discr(d);
             a.postTo(discr.a);
@@ -263,22 +255,6 @@ public class AsynchronousCallTest {
         @Override
         public void post(T v) {
             super.complete(v);
-        }
-    }
-
-    static class BlockingQueuePort<T> extends ArrayBlockingQueue<T> implements  Port<T> {
-
-        public BlockingQueuePort() {
-            super(4);
-        }
-
-        @Override
-        public void post(T v) {
-            try {
-                super.put(v);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 

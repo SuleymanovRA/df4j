@@ -17,7 +17,7 @@ public interface Subscription {
      * Subscriber will receive up to {@code n} additional {@code
      * complete} invocations (or fewer if terminated).
      *
-     * @param n the increment of demand; a value of {@code
+     * @param n the increment of demand; a activiactivityPlace of {@code
      * Long.MAX_VALUE} may be considered as effectively unbounded
      */
     public void request(long n);

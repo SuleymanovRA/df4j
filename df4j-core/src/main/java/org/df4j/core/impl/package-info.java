@@ -20,6 +20,6 @@
  *  {@link org.df4j.core.impl.Actor#act()}
  * <p>
  * - transition may be of several predefined types, and user can create specific pin types
- * by subclassing class {@link org.df4j.core.impl.Transition.Pin}
+ * by subclassing class {@link org.df4j.core.impl.ListTransition.Pin}
  */
 package org.df4j.core.impl;

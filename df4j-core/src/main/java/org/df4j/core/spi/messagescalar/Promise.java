@@ -6,8 +6,8 @@ import java.util.concurrent.Future;
 
 /**
  * Promise is an asynchronous counterpart of {@link Future}.
- * While  {@link Future} deliver information to a synchronous activity (@link Thread),
- * {@link Promise) deliver information to an asynchronous activity (@link Port}.
+ * While  {@link Future} deliver information to a synchronous activiactivityPlace (@link Thread),
+ * {@link Promise) deliver information to an asynchronous activiactivityPlace (@link Port}.
  *
  * @param <T>
  */

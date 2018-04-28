@@ -68,11 +68,11 @@ import java.util.function.Consumer;
  * at different rates.  Each subscriber uses an independent buffer.
  * Buffers are created upon first use and expanded as needed up to the
  * given maximum. (The enforced capacity may be rounded up to the
- * nearest power of two and/or bounded by the largest value supported
+ * nearest power of two and/or bounded by the largest activiactivityPlace supported
  * by this implementation.)  Invocations of {@link
  * Flow.Subscription#request(long) request} do not directly result in
  * buffer expansion, but risk saturation if unfilled requests exceed
- * the maximum capacity.  The default value of {@link
+ * the maximum capacity.  The default activiactivityPlace of {@link
  * Flow#defaultBufferSize()} may provide a useful starting point for
  * choosing a capacity based on expected rates, resources, and usages.
  *
@@ -237,9 +237,9 @@ public class SubmissionPublisher<T> implements Flow.Publisher<T>,
      * supporting creation of at least one independent thread
      * @param maxBufferCapacity the maximum capacity for each
      * subscriber's buffer (the enforced capacity may be rounded up to
-     * the nearest power of two and/or bounded by the largest value
+     * the nearest power of two and/or bounded by the largest activiactivityPlace
      * supported by this implementation; method {@link #getMaxBufferCapacity}
-     * returns the actual value)
+     * returns the actual activiactivityPlace)
      * @param handler if non-null, procedure to invoke upon exception
      * thrown in method {@code onNext}
      * @throws NullPointerException if executor is null
@@ -267,9 +267,9 @@ public class SubmissionPublisher<T> implements Flow.Publisher<T>,
      * supporting creation of at least one independent thread
      * @param maxBufferCapacity the maximum capacity for each
      * subscriber's buffer (the enforced capacity may be rounded up to
-     * the nearest power of two and/or bounded by the largest value
+     * the nearest power of two and/or bounded by the largest activiactivityPlace
      * supported by this implementation; method {@link #getMaxBufferCapacity}
-     * returns the actual value)
+     * returns the actual activiactivityPlace)
      * @throws NullPointerException if executor is null
      * @throws IllegalArgumentException if maxBufferCapacity not
      * positive
@@ -358,7 +358,7 @@ public class SubmissionPublisher<T> implements Flow.Publisher<T>,
      * onNext} method, blocking uninterruptibly while resources for any
      * subscriber are unavailable. This method returns an estimate of
      * the maximum lag (number of items submitted but not yet consumed)
-     * among all current subscribers. This value is at least one
+     * among all current subscribers. This activiactivityPlace is at least one
      * (accounting for this submitted item) if there are any
      * subscribers, else zero.
      *
@@ -443,7 +443,7 @@ public class SubmissionPublisher<T> implements Flow.Publisher<T>,
      * represents the (negative) number of drops (failed attempts to
      * issue the item to a subscriber). Otherwise it is an estimate of
      * the maximum lag (number of items submitted but not yet
-     * consumed) among all current subscribers. This value is at least
+     * consumed) among all current subscribers. This activiactivityPlace is at least
      * one (accounting for this submitted item) if there are any
      * subscribers, else zero.
      *
@@ -487,7 +487,7 @@ public class SubmissionPublisher<T> implements Flow.Publisher<T>,
      * represents the (negative) number of drops (failed attempts to
      * issue the item to a subscriber). Otherwise it is an estimate of
      * the maximum lag (number of items submitted but not yet
-     * consumed) among all current subscribers. This value is at least
+     * consumed) among all current subscribers. This activiactivityPlace is at least
      * one (accounting for this submitted item) if there are any
      * subscribers, else zero.
      *
